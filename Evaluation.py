@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn import ensemble
 from sklearn.metrics import mean_absolute_error
@@ -24,13 +25,13 @@ X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.3,shuffle=Tr
 model = ensemble.GradientBoostingRegressor()
 
 hyperparams = {
-        'n_estimators':[200,250,300],
-        'max_depth':[4,5,6],
-        'min_samples_split':[3,4,5],
-        'min_samples_leaf':[5,6,7],
-        'learning_rate':[0.01,0.02],
-        'max_features':[0.7,0.8,0.9],
-        'loss':['ls','lad','huber']
+        'n_estimators':[range(200,350,50)],
+        'max_depth':[range(3,8)],
+        'min_samples_split':[range(2,7)],
+        'min_samples_leaf':[range(4,9)],
+        'learning_rate':[np.arange(0.1,0.3,0.1)],
+        'max_features':[np.arange(0.5,1.0,0.1)],
+        'loss':['squared_error','lad','huber']
         }
 
 class Tee(object):
