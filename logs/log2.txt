@@ -1,0 +1,21 @@
+Fitting 5 folds for each of 11250 candidates, totalling 56250 fits
+Traceback (most recent call last):
+  File "Evaluation.py", line 55, in <module>
+    grid.fit(X_train, y_train)
+  File "/usr/local/lib/python3.8/site-packages/sklearn/model_selection/_search.py", line 891, in fit
+    self._run_search(evaluate_candidates)
+  File "/usr/local/lib/python3.8/site-packages/sklearn/model_selection/_search.py", line 1392, in _run_search
+    evaluate_candidates(ParameterGrid(self.param_grid))
+  File "/usr/local/lib/python3.8/site-packages/sklearn/model_selection/_search.py", line 838, in evaluate_candidates
+    out = parallel(
+  File "/usr/local/lib/python3.8/site-packages/joblib/parallel.py", line 1056, in __call__
+    self.retrieve()
+  File "/usr/local/lib/python3.8/site-packages/joblib/parallel.py", line 935, in retrieve
+    self._output.extend(job.get(timeout=self.timeout))
+  File "/usr/local/lib/python3.8/site-packages/joblib/_parallel_backends.py", line 542, in wrap_future_result
+    return future.result(timeout=timeout)
+  File "/usr/local/Cellar/python@3.8/3.8.12_1/Frameworks/Python.framework/Versions/3.8/lib/python3.8/concurrent/futures/_base.py", line 439, in result
+    self._condition.wait(timeout)
+  File "/usr/local/Cellar/python@3.8/3.8.12_1/Frameworks/Python.framework/Versions/3.8/lib/python3.8/threading.py", line 302, in wait
+    waiter.acquire()
+KeyboardInterrupt

@@ -30,10 +30,13 @@ hyperparams = {
         'max_depth':range(3,8),
         'min_samples_split':range(2,7),
         'min_samples_leaf':range(4,9),
-        'learning_rate':list(np.arange(0.1,0.3,0.1)),
-        'max_features':list(np.arange(0.5,1.0,0.1)),
-        'loss':['squared_error','lad','huber']
+        'learning_rate':[round(num,1) for num in np.arange(0.1,0.3,0.1)],
+        'max_features':[round(num,1) for num in np.arange(0.5,1.0,0.1)],
         }
+
+
+ls1 = {'loss':['squared_error','lad','huber']}
+ls2 = {'loss':['ls','lad','huber']}
 
 class Tee(object):
     def __init__(self, *files):
@@ -51,9 +54,19 @@ original_stderr = sys.stderr
 original_stdout = sys.stdout
 sys.stdout = Tee(sys.stdout, logfile)
 sys.stderr = sys.stdout
-grid = GridSearchCV(model, hyperparams, n_jobs=4, verbose=10)
-grid.fit(X_train, y_train)
-print(grid.best_params_)
+try:
+    hp = hyperparams.copy()
+    hp.update(ls1)
+    grid = GridSearchCV(model, hyperparams, n_jobs=4, verbose=10)
+    grid.fit(X_train, y_train)
+    print(grid.best_params_)
+except ValueError:
+    hp = hyperparams.copy()
+    hp.update(ls2)
+    grid = GridSearchCV(model, hyperparams, n_jobs=4, verbose=10)
+    grid.fit(X_train, y_train)
+    print(grid.best_params_)
+
 sys.stdout = original_stdout
 sys.stderr = original_stderr
 logfile.close()
