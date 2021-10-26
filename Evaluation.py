@@ -6,8 +6,8 @@ from sklearn.metrics import mean_absolute_error
 from sklearn.model_selection import GridSearchCV
 import sys
 
-testnum = 2
-df = pd.read_csv('../ML-Exercises/data/Melbourne_housing_FULL.csv')
+runnum = 2
+df = pd.read_csv('../data/Melbourne_housing_FULL.csv')
 
 df.columns = df.columns.str.strip()
 scrubbed = ['Address','Method','SellerG','Date','Postcode','Lattitude','Longtitude','Regionname','Propertycount']
@@ -46,7 +46,7 @@ class Tee(object):
         for f in self.files:
             f.flush()
 
-logfile = open('./logs/log' + str(testnum) + '.txt', 'w')
+logfile = open('./logs/log' + str(runnum) + '.txt', 'w')
 original_stderr = sys.stderr
 original_stdout = sys.stdout
 sys.stdout = Tee(sys.stdout, logfile)
@@ -56,4 +56,4 @@ grid.fit(X_train, y_train)
 print(grid.best_params_)
 sys.stdout = original_stdout
 sys.stderr = original_stderr
-
+logfile.close()
