@@ -45,7 +45,7 @@ class Tee(object):
         for f in self.files:
             f.flush()
 
-logfile = open('log.txt', 'w')
+logfile = open('./logs/log.txt', 'w')
 original_stderr = sys.stderr
 original_stdout = sys.stdout
 sys.stdout = Tee(sys.stdout, logfile)
