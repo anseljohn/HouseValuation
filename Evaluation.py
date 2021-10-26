@@ -7,7 +7,7 @@ from sklearn.model_selection import GridSearchCV
 import sys
 
 runnum = 2
-df = pd.read_csv('../data/Melbourne_housing_FULL.csv')
+df = pd.read_csv('../ML-Exercises/data/Melbourne_housing_FULL.csv')
 
 df.columns = df.columns.str.strip()
 scrubbed = ['Address','Method','SellerG','Date','Postcode','Lattitude','Longtitude','Regionname','Propertycount']
