@@ -6,6 +6,7 @@ from sklearn.metrics import mean_absolute_error
 from sklearn.model_selection import GridSearchCV
 import sys
 
+testnum = 2
 df = pd.read_csv('../ML-Exercises/data/Melbourne_housing_FULL.csv')
 
 df.columns = df.columns.str.strip()
@@ -45,7 +46,7 @@ class Tee(object):
         for f in self.files:
             f.flush()
 
-logfile = open('./logs/log.txt', 'w')
+logfile = open('./logs/log' + testnum + '.txt', 'w')
 original_stderr = sys.stderr
 original_stdout = sys.stdout
 sys.stdout = Tee(sys.stdout, logfile)
