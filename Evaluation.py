@@ -26,12 +26,12 @@ X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.3,shuffle=Tr
 model = ensemble.GradientBoostingRegressor()
 
 hyperparams = {
-        'n_estimators':[range(200,350,50)],
-        'max_depth':[range(3,8)],
-        'min_samples_split':[range(2,7)],
-        'min_samples_leaf':[range(4,9)],
-        'learning_rate':[np.arange(0.1,0.3,0.1)],
-        'max_features':[np.arange(0.5,1.0,0.1)],
+        'n_estimators':range(200,350,50),
+        'max_depth':range(3,8),
+        'min_samples_split':range(2,7),
+        'min_samples_leaf':range(4,9),
+        'learning_rate':list(np.arange(0.1,0.3,0.1)),
+        'max_features':list(np.arange(0.5,1.0,0.1)),
         'loss':['squared_error','lad','huber']
         }
 
